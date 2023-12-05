@@ -1,4 +1,5 @@
 import fs from 'fs';
+import { AlmanacRange, getAlmanac } from './utils.js';
 
 // The almanac lists seeds to plant
 // soil per seed, fertilizer per seed, fertilizer to water
@@ -15,13 +16,7 @@ import fs from 'fs';
 
 // seed -> soil -> fertilizer -> water -> light -> temperature -> humidity -> location
 
-type AlmanacRange = {
-    to: number,
-    from: number,
-    range: number,
-}
-
-const almanac = fs.readFileSync('input.txt', {encoding: "utf-8"});
+const almanac = getAlmanac('input.txt');
 
 const seedsStringList = almanac.match(/seeds:\s*(\d+\s*)+/gm)[0];
 const seeds = seedsStringList.match(/\d+/gm).map(s => +s);
