@@ -4,7 +4,8 @@
     "target": "ESNext",
     "sourceMap": true,
     "allowJs": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "rootDir": "./"
   },
   "exclude": [
     "node_modules"
