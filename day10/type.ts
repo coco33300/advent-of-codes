@@ -41,3 +41,4 @@ export type PipeNode = {
     symbol: Symbols,
     distance: number,
 }
+
