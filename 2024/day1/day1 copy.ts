@@ -1,4 +1,4 @@
-import { getLinesFromFile } from "../helpers/file.utils";
+import { getLinesFromFile } from "../../helpers/file.utils";
 
 
 
