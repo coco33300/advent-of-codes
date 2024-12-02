@@ -1,4 +1,4 @@
-import { getLinesFromFile } from '../helpers/file.utils.js';
+import { getLinesFromFile } from '../../helpers/file.utils.js';
 
 function strToNum(str) {
     return [

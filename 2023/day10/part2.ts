@@ -1,4 +1,4 @@
-import { getLinesFromFile } from '../helpers/file.utils';
+import { getLinesFromFile } from '../../helpers/file.utils';
 import { pipe, S, J, L, dot, dash, F, seven, symbolsList, PipeNode, Symbols } from './type';
 
 const lines = getLinesFromFile('sample3.txt').map(l => l.trim());

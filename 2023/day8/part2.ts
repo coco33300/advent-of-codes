@@ -1,5 +1,5 @@
-import { getLinesFromFile } from '../helpers/file.utils';
-import { lcm } from '../helpers/math.utils';
+import { getLinesFromFile } from '../../helpers/file.utils';
+import { lcm } from '../../helpers/math.utils';
 
 
 const lines = getLinesFromFile('input.txt');
