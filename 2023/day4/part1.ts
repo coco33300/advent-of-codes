@@ -1,4 +1,4 @@
-import { getLinesFromFile } from '../helpers/file.utils.js';
+import { getLinesFromFile } from '../../helpers/file.utils.js';
 import { parseCardMatch, scoreCard } from './utils.js';
 
 const inputLines = getLinesFromFile('input.txt');

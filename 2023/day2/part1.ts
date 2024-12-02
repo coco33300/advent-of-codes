@@ -1,4 +1,4 @@
-import { getLinesFromFile } from '../helpers/file.utils.js';
+import { getLinesFromFile } from '../../helpers/file.utils.js';
 
 /*
     Bag contains 12 red cubes, 13 green cubes, and 14 blue cubes

@@ -1,4 +1,4 @@
-import { getLinesFromFile } from '../helpers/file.utils.js';
+import { getLinesFromFile } from '../../helpers/file.utils.js';
 import {createInterface} from 'readline';
 
 const readline = createInterface(process.stdin, process.stdout);

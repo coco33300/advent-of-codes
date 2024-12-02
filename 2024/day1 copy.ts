@@ -15,15 +15,13 @@ lines.forEach(l => {
 });
 
 listLeft.sort();
-listRight.sort();
+const rightOccurencesMap = {};
 
-const diff = [];
+listRight.forEach(e => {
+    if (rightOccurencesMap[e] === undefined) {
+        rightOccurencesMap[e] = 0;
+    }
+    rightOccurencesMap[e]++;
+});
 
-let i = 0
-while(i < listLeft.length) {
-    diff.push(Math.abs(listLeft[i] - listRight[i]))
-    i++;
-}
-
-
-console.log(diff.reduce((acc, n) => acc + n));
+console.log(listLeft.reduce((acc, n) => acc + (rightOccurencesMap[n] ? n * rightOccurencesMap[n] : 0), 0));
