@@ -16,67 +16,43 @@ const nextLetter: (letter) => typeof letters[number] = letter => letters[letters
 // .A.
 // M.S
 
-// console.log(letters.map(l => nextLetter(l)))
 
-// const validNodes =[]
+const validNodes =[]
 
-// const nodeIsValid = (l,c, letter: 'X'|'M'|'A'|'S', direction: [0|-1|1, 0|-1|1]) => {
-//     // console.log({coordinates: [l, c], expected: letter, seen: lines[l]?.[c] })
-//     // check bounds
-//     if (l < 0 || l > lines.length-1 || c < 0 || c > lines[l].length -1) {
-//         return 0;
-//     }
-    
-//     const match = lines[l][c] === letter;
-//     if (!match) {
-//         return 0;
-//     }
+const getDiags = ([l, c]: [number, number]) => [
+    [
+        lines[l - 1][c - 1], lines[l + 1][c + 1]
+    ], [
+        lines[l - 1][c + 1], lines[l + 1][c - 1]
+    ]
+]
 
-//     if ( letter === 'S') {
-//         validNodes.push([l,c, 'S']);
-//         return 1;
-//     }
+let xmasCount = 0;
+for (let line = 1; line < lines.length - 1; line++) {
+    for (let column = 1; column < lines[0].length - 1; column++) {
+        if (lines[line][column] === 'A') {
+            const diags = getDiags([line,column]);
+            const validatedDiags = diags.map(diag => ['M', 'S'].every(l => diag.includes(l)))
 
-//     const valid = nodeIsValid(l + direction[0], c+ direction[1], nextLetter(letter) ,direction)
-//     // console.log({letter, valid, p: [l, c]})
-//     if (valid === 1) {
-//         validNodes.push([l,c, letter]);
-//     }
+            if (validatedDiags.filter(d => d).length === 2) {
+                xmasCount += 1;
+                validNodes.push(
+                    [line, column, 'A'],
+                    [line -1 , column-1 , lines[line -1].charAt(column-1)],
+                    [line +1 , column+1 , lines[line +1].charAt(column+1)],
+                    [line -1 , column+1 , lines[line -1].charAt(column+1)],
+                    [line +1 , column-1 , lines[line +1].charAt(column-1)],
+                )
+            }
+        }
+    }
+}
 
-//     return valid;
-// }
-
-
-// let xmasCount = 0;
-// for (let line = 0; line < lines.length; line++) {
-//     for (let column = 0; column < lines[0].length; column++) {
-//         if (lines[line][column] === 'X' ){
-//             const localCount = [
-//                 nodeIsValid(line, column+1, 'M', [0,1]),
-//                 nodeIsValid(line, column-1, 'M', [0,-1]),
-//                 nodeIsValid(line+1, column, 'M', [1,0]),
-//                 nodeIsValid(line-1, column, 'M', [-1,0]),
-//                 nodeIsValid(line+1, column+1, 'M', [1,1]),
-//                 nodeIsValid(line+1, column-1, 'M', [1,-1]),
-//                 nodeIsValid(line-1, column+1, 'M', [-1,1]),
-//                 nodeIsValid(line-1, column-1, 'M', [-1,-1]),
-//             ].filter(x => x === 1).length
-//             xmasCount += localCount;
-//             if (localCount > 0) {
-//                 // console.log([line, column], localCount)
-//                 validNodes.push([line,column, 'X'])
-//             }
-//         }
-
-//     }
-// }
-
-// console.log(used.map(u => u.join('')).join('\n'))
 const used = [];
 for (let i = 0; i < lines.length; i++) {
     const line = [];
-    for (let j =0 ; j< lines[0].length; j++) {
-        const node = validNodes.find(([l, c]) => l=== i && c === j);
+    for (let j = 0; j < lines[0].length; j++) {
+        const node = validNodes.find(([l, c]) => l === i && c === j);
         line.push(node?.[2] || '.')
     }
     used.push(line.join(''))
